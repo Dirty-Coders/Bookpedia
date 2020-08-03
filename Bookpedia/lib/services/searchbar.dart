@@ -11,6 +11,7 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   List<Widget> buildActions(BuildContext context) {
+    print("buildAction performed");
     return [
       IconButton(
         icon: Icon(Icons.search),
@@ -23,6 +24,7 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildLeading(BuildContext contexntext) {
+    print("buildLeading performed");
     return IconButton(
       onPressed: () {},
       icon: AnimatedIcon(
@@ -32,11 +34,13 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
+    print("buildResults performed");
     return null;
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    print("buildSuggestions performed");
     final suggestionlist = books;
     return ListView.builder(
       itemCount: suggestionlist.length,
@@ -47,6 +51,7 @@ class DataSearch extends SearchDelegate<String> {
   }
 
   void _sendDataToSresult(BuildContext context) {
+    print("_sendDataToSresult performed");
     String textToSend = query;
     Navigator.push(
         context,

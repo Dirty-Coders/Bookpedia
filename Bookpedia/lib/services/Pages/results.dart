@@ -48,7 +48,7 @@ class _resultState extends State<result> {
       appBar: AppBar(
         title: Text('Results for ${widget.text}'),
       ),
-      body: 
+      body: bookresults == []
           ? Center(
               child: CircularProgressIndicator(),
             )

@@ -1,3 +1,5 @@
+/// To do- Link the Search word to the api call
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
@@ -16,22 +18,34 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // String book = DataSearch().query;
-
-  // var url =
-  //     'https://www.googleapis.com/books/v1/volumes?q=${book}:keyes&key=AIzaSyCZirO73lPyuENe0phd6VECWutfpKK4lkc';
+  String nameEntered;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Search Books'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearch());
+      ),
+      body: Column(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Input the name of the book",
+            ),
+            onChanged: (nameEntered) {
+              this.nameEntered = nameEntered;
             },
-            icon: Icon(Icons.search),
+
+            ///This is the method where all operations on the name given by the user is supposed to be worked on.
+            ///{$nameEntered} is the variable in which the name entered would be stored.
+          ),
+          Container(
+            color: Colors.blue,
+            child: IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  print("Name entered by the user is $nameEntered");
+                }),
           )
         ],
       ),
