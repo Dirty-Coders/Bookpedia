@@ -1,3 +1,5 @@
+import 'package:Bookpedia/services/Pages/results.dart';
+
 /// To do- Link the Search word to the api call
 
 import 'package:flutter/material.dart';
@@ -45,10 +47,23 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.search),
                 onPressed: () {
                   print("Name entered by the user is $nameEntered");
+                  _sendDataToSresult(context);
                 }),
           )
         ],
       ),
     );
+  }
+
+  void _sendDataToSresult(BuildContext context) {
+    print("_sendDataToSresult performed");
+    String textToSend = nameEntered;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => result(
+            text: textToSend,
+          ),
+        ));
   }
 }
