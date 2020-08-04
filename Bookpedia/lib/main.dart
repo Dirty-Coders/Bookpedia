@@ -21,35 +21,52 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String nameEntered;
+  bool colorEdit = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(0, 173, 207, 81),
         title: Text('Search Books'),
       ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Input the name of the book",
-            ),
-            onChanged: (nameEntered) {
-              this.nameEntered = nameEntered;
-            },
+          Column(
+            children: <Widget>[
+              TextField(
+                cursorColor: Color.fromRGBO(0, 173, 207, 81),
+                decoration: InputDecoration(
+                  hintText: "Input the name of the book",
+                ),
+                onChanged: (nameEntered) {
+                  setState(() {
+                    this.nameEntered = nameEntered;
+                    colorEdit = !colorEdit;
+                  });
+                },
 
-            ///This is the method where all operations on the name given by the user is supposed to be worked on.
-            ///{$nameEntered} is the variable in which the name entered would be stored.
+                ///This is the method where all operations on the name given by the user is supposed to be worked on.
+                ///{$nameEntered} is the variable in which the name entered would be stored.
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                child: AnimatedContainer(
+                  width: 500,
+                  color: colorEdit
+                      ? Color.fromRGBO(0, 173, 207, 81)
+                      : Colors.amber,
+                  duration: Duration(milliseconds: 500),
+                  child: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {
+                        print("Name entered by the user is $nameEntered");
+                        _sendDataToSresult(context);
+                      }),
+                ),
+              )
+            ],
           ),
-          Container(
-            color: Colors.blue,
-            child: IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  print("Name entered by the user is $nameEntered");
-                  _sendDataToSresult(context);
-                }),
-          )
         ],
       ),
     );
